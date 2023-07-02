@@ -2,15 +2,18 @@ const rjg = document.getElementById('rjg');
 const rjgUrl = "https://v2.jokeapi.dev/joke/Any"
 const djg = document.getElementById('djg');
 const djgUrl = "https://icanhazdadjoke.com/"; 
-const cnjg = document.getElementById('cnjg');
+const darkjg = document.getElementById('darkjg');
+const darkjgUrl = "https://v2.jokeapi.dev/joke/Dark";
 const jokeTitle = document.querySelector('.jokeTitle');
 const jokeText = document.getElementById('jokeText');
+const copyBtn = document.getElementById('btn-copy');
 
 
 
 rjg.addEventListener('click', function(e){
     e.preventDefault();
     jokeTitle.innerHTML = rjg.textContent;
+    jokeText.innerHTML = '';
     document.getElementById('btn-generate').setAttribute('id','rjg-btn-generate');
 
     const generateRjg  = document.getElementById('rjg-btn-generate');
@@ -27,7 +30,8 @@ rjg.addEventListener('click', function(e){
 djg.addEventListener('click', function(e){
     e.preventDefault();
     jokeTitle.innerHTML = djg.textContent;
-    document.getElementById('btn-generate').setAttribute('id', 'djg-btn-generate')
+    jokeText.innerHTML = '';
+    document.getElementById('btn-generate').setAttribute('id', 'djg-btn-generate');
 
     const generateDjg = document.getElementById('djg-btn-generate');
     generateDjg.addEventListener('click', async function getDadJoke(){
@@ -41,12 +45,45 @@ djg.addEventListener('click', function(e){
         const data = await response.json();
 
         jokeText.innerHTML = data.joke;
-        console.log(data);
     })
     
 })
 
-cnjg.addEventListener('click', function(e){
+darkjg.addEventListener('click', function(e){
     e.preventDefault();
-    jokeTitle.innerHTML = cnjg.textContent;
+    jokeTitle.innerHTML = darkjg.textContent;
+    jokeText.innerHTML = '';
+    document.getElementById('btn-generate').setAttribute('id', 'darkjg-btn-generate');
+
+    const generateDarkj= document.getElementById('darkjg-btn-generate');
+    generateDarkj.addEventListener('click', async function getDarkJoke() {
+
+        const request = new Request(darkjgUrl)
+        const response = await fetch(request)
+        const data = await response.json();
+
+        console.log(data)
+
+        if(data.setup && data.delivery){
+            jokeText.innerHTML = `${data.setup}<br>${data.delivery}`;
+        } else if(data.joke){
+            jokeText.innerHTML = `${data.joke}`
+        }
+    })
+
+
+
+    
+})
+
+// * COPY TO CLIPBOARD
+
+copyBtn.addEventListener('click', async () =>{
+    try {
+        await navigator.clipboard.writeText(jokeText.textContent);
+        console.log('content copied');
+    }
+    catch (err){
+        console.error(err);
+    }
 })
