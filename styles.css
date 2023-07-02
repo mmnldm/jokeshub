@@ -22,7 +22,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 88vh;
     background-color: #e6e6e6;
   }
   
@@ -50,4 +50,23 @@ a{
     padding: 9px;
     cursor: pointer;
     border-radius: 10px;
+  }
+
+  footer {
+    background-color: #f3f2f2;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer > h4 {
+    text-align: center;
+    font-family: 'Inconsolata', monospace;    
+  }
+
+  footer > h4 > a {
+    text-decoration: underline;
+    color: black;
+    font-family: 'Inconsolata', monospace;
   }
