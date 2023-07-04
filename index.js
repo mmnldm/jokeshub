@@ -21,7 +21,12 @@ rjg.addEventListener('click', function(e){
 
         const response = await fetch(rjgUrl);
         const data = await response.json();
-        jokeText.innerHTML = `${data.setup}<br>${data.delivery}`
+        
+        if(data.setup && data.delivery){
+            jokeText.innerHTML = `${data.setup}<br>${data.delivery}`;
+        } else if(data.joke){
+            jokeText.innerHTML = `${data.joke}`
+        }
 
     })
 
@@ -81,7 +86,12 @@ darkjg.addEventListener('click', function(e){
 copyBtn.addEventListener('click', async () =>{
     try {
         await navigator.clipboard.writeText(jokeText.textContent);
-        console.log('content copied');
+        copyBtn.textContent = 'Copied'
+        copyBtn.classList.add('copyColor');
+        setTimeout(() => {
+            copyBtn.textContent = 'Copy Joke'
+            copyBtn.classList.remove('copyColor');
+        }, 500);
     }
     catch (err){
         console.error(err);
