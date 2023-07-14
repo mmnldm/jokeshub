@@ -10,11 +10,12 @@
 body{
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 
 .navbar{
   width: 10rem;
-  height: 100vh;
+  height: 100%;
   background-color: #107896;
   position: fixed;
 }
@@ -33,6 +34,7 @@ body{
   width: 100%;
   padding: 1rem;
   text-align: center;
+  border-bottom: 1px solid white;
 }
 
 
@@ -40,6 +42,7 @@ body{
   color: white;
   text-decoration: none;
   font-family: 'Inconsolata';
+  
 
 }
 .nav-item:hover{
@@ -61,7 +64,9 @@ body{
   font-size: 20px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 10px;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid white;
 }
 
 .wrapper{
@@ -118,4 +123,21 @@ footer > h4 > a{
 
 .copyColor{
   background-color: #107896;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+
+  .wrapper{
+    min-height: 100vh;
+    
+  }
+
+  .navbar-nav{
+    height: 100%;
+  }
+
+  .content > p{
+    inline-size: 200px;
+    word-wrap: break-word;
+  }
 }
