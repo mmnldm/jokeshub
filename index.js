@@ -97,3 +97,10 @@ copyBtn.addEventListener('click', async () =>{
         console.error(err);
     }
 })
+
+// * Request Button Click
+const getRequest = document.querySelector('request');
+
+getRequest.addEventListener('click', function(){
+    
+})
